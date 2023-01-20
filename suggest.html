@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+  <title>WHCI Key Club - Event Suggestion</title>
+
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no" />
+
+  <link rel="icon" href="img/key_icon.png" />
+
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" />
+  <script src="https://kit.fontawesome.com/2eb88ffea0.js"></script>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div id="layout_nav"></div>
+
+  <div class="container pt-3">
+    <div id="wrapper">
+      <div class="alert alert-danger">
+        <h3 class="alert-heading font-weight-bold">Please Do Not Use Yet!</h3>
+        This is currently under construction, and it does not work yet!
+        <br />
+        We are sorry for the inconvenience.
+      </div>
+
+      <h2 class="font-weight-bold text-center display-4">Event Suggestion</h2>
+
+      <form id="whci-suggest-form">
+        <div class="form-group row">
+          <label for="whci-suggest-name" class="col-sm-2 col-form-label">Event Name</label>
+          <div class="col-sm-10">
+            <input type="text" id="whci-suggest-name" class="form-control" placeholder="Event Name" required />
+          </div>
+        </div>
+        <div class="form-group row">
+          <label for="whci-suggest-date" class="col-sm-2 col-form-label">Date</label>
+          <div class="col-sm-10">
+            <input type="date" id="whci-suggest-date" class="form-control" required />
+          </div>
+        </div>
+        <div class="form-group row">
+          <label for="whci-suggest-place" class="col-sm-2 col-form-label">Place</label>
+          <div class="col-sm-10">
+            <input type="text" id="whci-suggest-place" class="form-control" placeholder="Event Place" required />
+          </div>
+        </div>
+        <div class="form-group row">
+          <label for="whci-suggest-charge" class="col-sm-2 col-form-label">Reference's Contact</label>
+          <div class="col-sm-10">
+            <input type="text" id="whci-suggest-charge" class="form-control" placeholder="Person in Charge of Event's Contact Information" required />
+          </div>
+        </div>
+        <div class="form-group row">
+          <label for="whci-suggest-num" class="col-sm-2 col-form-label">Approx. # of Hours</label>
+          <div class="col-sm-10">
+            <input type="number" id="whci-suggest-num" class="form-control" min="0" step="0.5" placeholder="Rounded to Half an Hour" required />
+          </div>
+        </div>
+        <div class="text-center">
+          <button type="submit" id="whci-suggest-btn" class="btn btn-primary">Submit</button>
+        </div>
+      </form>
+    </div>
+
+    <div id="layout_footer"></div>
+  </div>
+
+  <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+  <script>
+    $(document).ready(function() {
+      $("#layout_nav").load("layout/nav.html", function() {
+        $("#whci-menu-btn-times").hide();
+        $("#whci-menu-btn-text").html("Menu");
+
+        $("#whci-menu-btn").on("click", function(e) {
+          $("#whci-menu-btn-bars").toggle();
+          $("#whci-menu-btn-times").toggle();
+
+          if ($("#whci-menu-btn-text").html() == "Menu")
+            $("#whci-menu-btn-text").html("Close");
+          else if ($("#whci-menu-btn-text").html() == "Close")
+            $("#whci-menu-btn-text").html("Menu");
+        });
+      });
+
+      $("#layout_footer").load("layout/footer.html", function() { });
+
+      $("#whci-suggest-form").submit(function(e) {
+        e.preventDefault();
+      });
+    });
+  </script>
+</body>
+</html>

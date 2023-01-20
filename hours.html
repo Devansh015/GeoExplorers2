@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+  <title>WHCI Key Club - Hours Submission</title>
+
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no" />
+
+  <link rel="icon" href="img/key_icon.png" />
+
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" />
+  <script src="https://kit.fontawesome.com/2eb88ffea0.js"></script>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div id="layout_nav"></div>
+
+  <div class="container pt-3">
+    <div id="wrapper">
+      <h2 class="font-weight-bold text-center display-4">Hours Submission</h2>
+
+      <div id="whci-hour-temp" class="text-center">Thank you for your submission! Reloading in 3 seconds...</div>
+
+      <form id="whci-hour-form">
+        <div class="form-group row">
+          <label for="whci-hour-name" class="col-sm-2 col-form-label">Student Name</label>
+          <div class="col-sm-10">
+            <input type="text" id="whci-hour-name" class="form-control" placeholder="Student Name" required />
+          </div>
+        </div>
+        <div class="form-group row">
+          <label for="whci-hour-event" class="col-sm-2 col-form-label">Event Name</label>
+          <div class="col-sm-10">
+            <input type="text" id="whci-hour-event" class="form-control" placeholder="Event Name" required />
+          </div>
+        </div>
+        <div class="form-group row">
+          <label for="whci-hour-date" class="col-sm-2 col-form-label">Date</label>
+          <div class="col-sm-10">
+            <input type="date" id="whci-hour-date" class="form-control" min="2013-01-01" required />
+          </div>
+        </div>
+        <div class="form-group row">
+          <label for="whci-hour-place" class="col-sm-2 col-form-label">Place</label>
+          <div class="col-sm-10">
+            <input type="text" id="whci-hour-place" class="form-control" placeholder="Event Place" required />
+          </div>
+        </div>
+        <div class="form-group row">
+          <label for="whci-hour-charge" class="col-sm-2 col-form-label">Reference</label>
+          <div class="col-sm-10">
+            <input type="text" id="whci-hour-charge" class="form-control" placeholder="Executive/Person in Charge of Event" required />
+          </div>
+        </div>
+        <div class="form-group row">
+          <label for="whci-hour-num" class="col-sm-2 col-form-label"># of Hours</label>
+          <div class="col-sm-10">
+            <input type="number" id="whci-hour-num" class="form-control" min="0.5" step="0.5" placeholder="Rounded to Half an Hour" required />
+          </div>
+        </div>
+        <div class="text-center">
+          <button type="submit" id="whci-hour-btn" class="btn btn-primary">Submit</button>
+        </div>
+      </form>
+    </div>
+
+    <div id="layout_footer"></div>
+  </div>
+
+  <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+  <script>
+    $(document).ready(function() {
+      $("#whci-hour-temp").hide();
+
+      $("#layout_nav").load("layout/nav.html", function() {
+        $("#whci-menu-btn-times").hide();
+        $("#whci-menu-btn-text").html("Menu");
+
+        $("#whci-menu-btn").on("click", function(e) {
+          $("#whci-menu-btn-bars").toggle();
+          $("#whci-menu-btn-times").toggle();
+
+          if ($("#whci-menu-btn-text").html() == "Menu")
+            $("#whci-menu-btn-text").html("Close");
+          else if ($("#whci-menu-btn-text").html() == "Close")
+            $("#whci-menu-btn-text").html("Menu");
+        });
+      });
+
+      $("#layout_footer").load("layout/footer.html", function() { });
+
+      $("#whci-hour-form").submit(function(e) {
+        e.preventDefault();
+        const whci_name = $("#whci-hour-name").val(), whci_event = $("#whci-hour-event").val(),
+          whci_date = $("#whci-hour-date").val(), whci_place = $("#whci-hour-place").val(),
+          whci_charge = $("#whci-hour-charge").val(), whci_num = $("#whci-hour-num").val();
+        const whci = { name: whci_name, event: whci_event, date: whci_date, place: whci_place, charge: whci_charge, num: whci_num };
+        const whci_json = JSON.stringify(whci);
+
+        const url = "https://script.google.com/macros/s/AKfycbybgk0qXZ8wW-M-B46HgB1ISHq0xnIeIUtlsvnGtvYDEVfDrYCg/exec";
+        //console.info("url: " + url);
+        //console.info("data: " + whci_json);
+
+        var jqxhr = $.ajax({
+          url: url,
+          method: "GET",
+          dataType: "json",
+          data: whci_json
+        }).done(function(response, textStatus, jqXHR) {
+          //console.info("success: " + response);
+        }).fail(function(jqHXR, textStatus, errorThrown) {
+          //console.error("fail: " + errorThrown);
+        });
+
+        alert("Error: The database is offline! Could not process request.");
+
+        $("#whci-hour-temp").show();
+        $("#whci-hour-form").hide();
+
+        setTimeout(function() { window.location.reload(true); }, 3000);
+      });
+    });
+  </script>
+</body>
+</html>

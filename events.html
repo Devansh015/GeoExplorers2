@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+  <title>WHCI Key Club - Volunteer Events</title>
+
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no" />
+
+  <link rel="icon" href="img/key_icon.png" />
+
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" />
+  <script src="https://kit.fontawesome.com/2eb88ffea0.js"></script>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div id="layout_nav"></div>
+
+  <div class="container pt-3">
+    <div id="wrapper">
+      <div class="alert alert-warning">
+        <h3 class="alert-heading font-weight-bold">To Be Added To</h3>
+        Please come back routinely to see any new events that we manage to find.
+      </div>
+
+      <h2 class="font-weight-bold text-center display-4">Volunteer Events</h2>
+
+      <h4 class="font-weight-bold">Bi-Weekly School Cleanup</h4>
+      <p>
+        Make sure to attend the bi-weekly school cleanups that we organize!
+        It's a great way to give back to our school and the neighbouring community!
+        See Rajat Patwari for more information.
+      </p>
+
+      <h4 class="font-weight-bold">Walk to End ALS</h4>
+      <p>
+        We'll be going to the Walk to End ALS soon!
+        Be sure to ask Mr. Koczij or Ms. Hwang for any questions.
+      </p>
+
+      <h4 class="font-weight-bold">School Traffic Helpers</h4>
+      <p>
+        The school needs some helpers before and after school to keep the traffic flow steady.
+        See Abhay Sharma for more information.
+      </p>
+
+      <h4 class="text-secondary font-weight-bold">Parent Visitation Night Helpers</h4>
+      <p>
+        Ms. Akhtar would like some help to set up the Parent Visitation Night booth for AP subjects.
+        Please visit Ms. Akhtar in Room W11 for more information.
+      </p>
+
+      <h4 class="text-secondary font-weight-bold">Centennial Cross-Country Helpers</h4>
+      <p>
+        Mr. Garrison would like some volunteers to help set up equipment for a cross-country competition.
+        The competition is at Centennial College on October 10 during the afternoon. For more information, please visit Mr. Garrison in Room 110.
+      </p>
+    </div>
+
+    <div id="layout_footer"></div>
+  </div>
+
+  <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+  <script>
+    $(document).ready(function() {
+      $("#layout_nav").load("layout/nav.html", function() {
+        $("#whci-menu-btn-times").hide();
+        $("#whci-menu-btn-text").html("Menu");
+
+        $("#whci-menu-btn").on("click", function(e) {
+          $("#whci-menu-btn-bars").toggle();
+          $("#whci-menu-btn-times").toggle();
+
+          if ($("#whci-menu-btn-text").html() == "Menu")
+            $("#whci-menu-btn-text").html("Close");
+          else if ($("#whci-menu-btn-text").html() == "Close")
+            $("#whci-menu-btn-text").html("Menu");
+        });
+      });
+
+      $("#layout_footer").load("layout/footer.html", function() { });
+    });
+  </script>
+</body>
+</html>

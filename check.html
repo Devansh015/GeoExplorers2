@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+  <title>WHCI Key Club - Hours Check</title>
+
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no" />
+
+  <link rel="icon" href="img/key_icon.png" />
+
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" />
+  <script src="https://kit.fontawesome.com/2eb88ffea0.js"></script>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div id="layout_nav"></div>
+
+  <div class="container pt-3">
+    <div id="wrapper">
+      <div class="alert alert-danger">
+        <h3 class="alert-heading font-weight-bold">Please Do Not Use Yet!</h3>
+        This is currently under construction, and it does not work yet!
+        <br />
+        We are sorry for the inconvenience.
+      </div>
+
+      <h2 class="font-weight-bold text-center display-4">Hours Check</h2>
+
+      <form id="whci-check-form">
+        <div class="form-group row">
+          <label for="whci-check-name" class="col-sm-2 col-form-label">Student Name</label>
+          <div class="col-sm-10">
+            <input type="text" id="whci-check-name" class="form-control" placeholder="Student Name" required />
+          </div>
+        </div>
+        <div class="text-center">
+          <button type="submit" id="whci-check-btn" class="btn btn-primary">Submit</button>
+        </div>
+      </form>
+      
+      <div id="whci-check-table" class="table-responsive">
+        <table class="table table-striped table-hover table-bordered text-center">
+          <thead class="thead-dark">
+            <tr>
+              <th scope="col">Date</th>
+              <th scope="col">Place</th>
+              <th scope="col">Reference</th>
+              <th scope="col"># of Hours</th>
+            </tr>
+          </thead>
+          <tbody id="whci-check-table-body">
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <div id="layout_footer"></div>
+  </div>
+
+  <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+  <script>
+    $(document).ready(function() {
+      $("#layout_nav").load("layout/nav.html", function() {
+        $("#whci-menu-btn-times").hide();
+        $("#whci-menu-btn-text").html("Menu");
+
+        $("#whci-menu-btn").on("click", function(e) {
+          $("#whci-menu-btn-bars").toggle();
+          $("#whci-menu-btn-times").toggle();
+
+          if ($("#whci-menu-btn-text").html() == "Menu")
+            $("#whci-menu-btn-text").html("Close");
+          else if ($("#whci-menu-btn-text").html() == "Close")
+            $("#whci-menu-btn-text").html("Menu");
+        });
+      });
+
+      $("#layout_footer").load("layout/footer.html", function() { });
+
+      $("#whci-check-table").hide();
+
+      $("#whci-check-form").submit(function(e) {
+        e.preventDefault();
+        $("#whci-check-form").hide();
+        $("#whci-check-table").show();
+      });
+    });
+  </script>
+</body>
+</html>
